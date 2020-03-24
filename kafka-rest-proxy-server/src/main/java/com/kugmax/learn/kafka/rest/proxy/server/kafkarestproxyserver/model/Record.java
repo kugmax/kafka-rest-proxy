@@ -9,6 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 public class Record {
     private String key;
-    private String value;
+    private Object value;
     private int partition;
 }

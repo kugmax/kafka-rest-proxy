@@ -3,11 +3,11 @@ package com.kugmax.learn.kafka.rest.proxy.server.kafkarestproxyserver.service;
 import com.kugmax.learn.kafka.rest.proxy.server.kafkarestproxyserver.clients.kafka.RestProxyClient;
 import com.kugmax.learn.kafka.rest.proxy.server.kafkarestproxyserver.model.Message;
 import com.kugmax.learn.kafka.rest.proxy.server.kafkarestproxyserver.model.Record;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -16,17 +16,14 @@ public class MessageServiceImpl implements MessageService {
     @Autowired
     private RestProxyClient client;
 
-
     @Override
     public String push(String msg) {
-        Record record = new Record();
-//        record.setValue(
-//                "{\"msg\":" + "\"" + msg + "\"}"
-//        );
 
-        record.setValue(
-               msg
-        );
+        HashMap<String, String> m = new HashMap<>();
+        m.put("msg", msg);
+
+        Record record = new Record();
+        record.setValue(m);
 
         Message message = new Message(Arrays.asList(record));
 
