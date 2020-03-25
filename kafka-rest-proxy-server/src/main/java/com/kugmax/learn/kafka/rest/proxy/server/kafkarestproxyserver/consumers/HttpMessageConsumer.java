@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 
-@Service
-public class MessageConsumer implements InitializingBean {
+//@Service
+public class HttpMessageConsumer implements InitializingBean {
 
     @Autowired
     private RestProxyClient client;
@@ -28,7 +28,7 @@ public class MessageConsumer implements InitializingBean {
 
     private volatile String baseUrl;
 
-    @Scheduled(initialDelay = 2000, fixedDelay = 1000)
+//    @Scheduled(initialDelay = 2000, fixedDelay = 1000)
     public void fetchRecords() {
         List<MessageRecord> records = client.getRecords(consumerGroupName, instanceId);
         System.out.println("fetched " + records.size() + " records.");
